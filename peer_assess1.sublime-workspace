@@ -1,0 +1,354 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"re",
+				"readRDS"
+			],
+			[
+				"cl",
+				"client_guid"
+			],
+			[
+				"p",
+				"patient_guid"
+			],
+			[
+				"w",
+				"WHO_FOR_GUID"
+			],
+			[
+				"P",
+				"PATIENT_GUID"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "require(dplyr)\nrequire(ggplot2)\n\n\nif( ! file.exists( \"./data\" ) ) { dir.create(\"./data\") }\n\nsourceFile <- \"activity.zip\"\nif( file.exists( sourceFile ) ) { unzip(sourceFile, exdir=\"./data\") }\n\noutFile  <- \"./data/activity.csv\"\nif ( exists(\"DF\") == FALSE ) { DF <- read.csv(outFile) }\n\nnames(DF) <- c(\"steps\",\"date.measure\",\"interval\")\n\nok <- complete.cases(DF)\ndf1 <- DF[ok,]\n\nh <- ggplot(df1, aes(y=steps)) +\n    geom_histogram()\nprint (h)",
+			"file": "read_file.R",
+			"file_size": 458,
+			"file_write_time": 130782682486839648,
+			"settings":
+			{
+				"buffer_size": 439,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/hlt/GitHub/ExData_Proj2/plot3.R",
+			"settings":
+			{
+				"buffer_size": 1967,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/hlt/GitHub/RepData_PeerAssessment1"
+	],
+	"file_history":
+	[
+		"/C/Users/hlt/GitHub/ExData_Proj2/plot2.R",
+		"/C/Users/hlt/GitHub/ExData_Proj2/Student 1.R",
+		"/C/Users/hlt/GitHub/ExData_Proj2/Student 2.R",
+		"/C/Users/hlt/GitHub/ExData_Proj2/Student 3.R",
+		"/C/Users/hlt/GitHub/ExData_Proj2/Student 4.R",
+		"/C/Users/hlt/GitHub/ExData_Proj2/Student 5.R",
+		"/C/Users/hlt/GitHub/ExData_Proj2/Student 6.R",
+		"/C/ASPCA_SQL/Impromed/Impromed5/ViewDefs/IDV/idvclients.ddl",
+		"/C/ASPCA_SQL/Impromed/Impromed5/ViewDefs/IDV/idvpatients.ddl",
+		"/C/Users/hlt/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/hlt/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/hlt/GitHub/R_tips_tricks.md",
+		"/C/ASPCA_SQL/Data Mining/Antox/grapes_data_discovery.sql",
+		"/C/Users/hlt/.Box Sync/Box Sync/Harold Trammel Home/Data Science/Johns Hopkins Data Science/Exploratory Data Analysis/Week4/script.R",
+		"/C/Users/hlt/GitHub/Antox Data Mining/data/grapes.txt",
+		"/C/ibi/tomcat/logs/catalina.2015-05-26.log",
+		"/C/ibi/tomcat/logs/tomcat7wf-stderr.2015-05-26.log",
+		"/C/ibi/tomcat/logs/localhost.2015-05-26.log",
+		"/C/ibi/tomcat/logs/tomcat7wf-stdout.2015-05-26.log",
+		"/C/ibi/tomcat/logs/commons-daemon.2015-05-26.log",
+		"/C/ibi/tomcat/logs/manager.2015-05-26.log",
+		"/C/ibi/tomcat/logs/host-manager.2015-05-26.log",
+		"/C/ibi/tomcat/logs/localhost_access_log.2015-05-26.txt",
+		"/C/ibi/tomcat/logs/tomcat7wf-stdout.2015-05-21.log",
+		"/C/ibi/tomcat/logs/commons-daemon.2015-05-21.log",
+		"/C/ibi/tomcat/logs/tomcat7wf-stderr.2015-05-21.log",
+		"/C/Users/hlt/GitHub/ExData_Proj2/plot4.R",
+		"/C/Users/hlt/GitHub/ExData_Plotting1/plot1.R",
+		"/C/Users/hlt/Desktop/AppStudio_Case-21183548.txt",
+		"/C/ASPCA_SQL/Reports/AAH Reports/AAH_Appointments/emergency_vs_walkin_v1r2.sql",
+		"/C/Users/hlt/as_81_inst_562015_112842.log",
+		"/C/Users/hlt/.Box Sync/Box Sync/Harold Trammel Home/Data Science/Johns Hopkins Data Science/Exploratory Data Analysis/Course Project/ExData_Plotting1/plot1_hlt.R",
+		"/C/Users/hlt/GitHub/APCC Counts/get_data.R",
+		"/C/Users/hlt/GitHub/ExData_Plotting1/.gitignore",
+		"/C/Users/hlt/GitHub/ExData_Plotting1/data/household_power_consumption.txt",
+		"/C/AntoxRestore/hotline/replaceHotline.bat",
+		"/C/AntoxRestore/hotline/hotline_replace.db2",
+		"/C/IBM/DiagLogs/db2diag.log",
+		"/C/ASPCA_SQL/DbsDDL/CleanMR/Physical MR 2007-02-13.sql",
+		"/C/Users/hlt/as_81_inst_562015_085442.log",
+		"/C/Users/hlt/.Box Sync/Box Sync/Harold Trammel Home/Data Science/Johns Hopkins Data Science/Exploratory Data Analysis/Course Project/project1_instructions.html",
+		"/C/Users/hlt/Documents/My Tableau Repository/Workbooks/Impromed/ASPCA_CALCULATION.TXT",
+		"/C/Users/hlt/Desktop/event_logs_2015-04-30_1620.txt",
+		"/C/Users/hlt/as_81_inst_4282015_100839.log",
+		"/C/ibi/tomcat/logs/tomcat7wf-stderr.2015-04-30.log",
+		"/C/ibi/AppStudio81/logs/event.log",
+		"/C/Users/hlt/Desktop/app_studio_event_log.txt",
+		"/C/ibi/AppStudio81/logs/audit.log",
+		"/C/ibi/AppStudio81/logs/monitor.log",
+		"/C/ibi/tomcat/logs/catalina.2015-04-27.log",
+		"/C/ibi/tomcat/logs/tomcat7wf-stdout.2015-04-27.log"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			",",
+			"  ,[",
+			",",
+			"\n",
+			", ",
+			"Adoption",
+			"Body",
+			"Adoption",
+			") THEN",
+			"=",
+			"]",
+			"])",
+			" {",
+			" CONTAINS(",
+			" ENDSWITH(",
+			" STARTSWITH(",
+			" TRIM",
+			"[",
+			"ELSEIF",
+			"FIRST NAME",
+			"Last Name",
+			"ASPCA",
+			"ADOPTION",
+			"ASPCA",
+			"FIR",
+			"ANTI-CRUELTY"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			" THEN",
+			"THEN",
+			"LIKE",
+			")) ",
+			"))",
+			" ",
+			"",
+			"RTRIM(LTRIM(",
+			"WHEN",
+			"FIRST_NAME",
+			"LAST_NAME"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "read_file.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17,
+								17
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/R/R.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/hlt/GitHub/ExData_Proj2/plot3.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1967,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1493,
+								1493
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/R/R.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 342.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "peer_assess1.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 216.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
