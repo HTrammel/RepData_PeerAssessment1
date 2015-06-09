@@ -2,7 +2,7 @@
 
 
 ## Loading and preprocessing the data
-In keeping with the project instruction, the following code loads and provides the initial processing of the data.  
+In keeping with the project instructions, the following code loads and provides the initial processing of the data.  
 
 
 ```r
@@ -12,28 +12,77 @@ sourceFile <- "activity.zip"
 if(file.exists(sourceFile)) { unzip(sourceFile, exdir="./data") }
 
 outFile  <- "./data/activity.csv"
-if (exists("act_df") == FALSE) { act_df <- read.csv(outFile) }
-
-summary(act_df)
+if (exists("DF") == FALSE) { DF <- read.csv(outFile) }
 ```
-
-```
-##      steps                date          interval     
-##  Min.   :  0.00   2012-10-01:  288   Min.   :   0.0  
-##  1st Qu.:  0.00   2012-10-02:  288   1st Qu.: 588.8  
-##  Median :  0.00   2012-10-03:  288   Median :1177.5  
-##  Mean   : 37.38   2012-10-04:  288   Mean   :1177.5  
-##  3rd Qu.: 12.00   2012-10-05:  288   3rd Qu.:1766.2  
-##  Max.   :806.00   2012-10-06:  288   Max.   :2355.0  
-##  NA's   :2304     (Other)   :15840
-```
-
-
-
 
 ## What is mean total number of steps taken per day?
+The distribution of the total number of steps per day is shown below.
 
 
+```r
+require(dplyr)
+```
+
+```
+## Loading required package: dplyr
+## 
+## Attaching package: 'dplyr'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+require(ggplot2)
+```
+
+```
+## Loading required package: ggplot2
+```
+
+```r
+require(lubridate)
+```
+
+```
+## Loading required package: lubridate
+```
+
+```r
+ok <- complete.cases(DF)
+df <- DF[ok,]
+df$date <- ymd(df$date)
+
+cdf <- aggregate(df$steps, by=list(df$date), sum)
+names(cdf) <- c("Date","Steps")
+
+g <- ggplot(cdf, aes(x = Date, y = Steps)) +
+    geom_histogram(stat = "identity")
+print(g)
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
+The **mean** and **median** of the total number of steps per day are given below.
+
+
+```r
+summary(cdf)
+```
+
+```
+##       Date                         Steps      
+##  Min.   :2012-10-02 00:00:00   Min.   :   41  
+##  1st Qu.:2012-10-16 00:00:00   1st Qu.: 8841  
+##  Median :2012-10-29 00:00:00   Median :10765  
+##  Mean   :2012-10-30 17:12:27   Mean   :10766  
+##  3rd Qu.:2012-11-16 00:00:00   3rd Qu.:13294  
+##  Max.   :2012-11-29 00:00:00   Max.   :21194
+```
 
 ## What is the average daily activity pattern?
 

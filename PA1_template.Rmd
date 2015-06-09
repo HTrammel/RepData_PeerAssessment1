@@ -16,13 +16,33 @@ sourceFile <- "activity.zip"
 if(file.exists(sourceFile)) { unzip(sourceFile, exdir="./data") }
 
 outFile  <- "./data/activity.csv"
-if (exists("df") == FALSE) { df <- read.csv(outFile) }
+if (exists("DF") == FALSE) { DF <- read.csv(outFile) }
 ```
 
 ## What is mean total number of steps taken per day?
+The distribution of the total number of steps per day is shown below.
+
 ```{r}
+require(dplyr)
+require(ggplot2)
+require(lubridate)
 
+ok <- complete.cases(DF)
+df <- DF[ok,]
+df$date <- ymd(df$date)
 
+cdf <- aggregate(df$steps, by=list(df$date), sum)
+names(cdf) <- c("Date","Steps")
+
+g <- ggplot(cdf, aes(x = Date, y = Steps)) +
+    geom_histogram(stat = "identity")
+print(g)
+```
+The **mean** and **median** of the total number of steps per day are given below.
+
+```{r}
+summary(cdf)
+```
 
 ## What is the average daily activity pattern?
 
