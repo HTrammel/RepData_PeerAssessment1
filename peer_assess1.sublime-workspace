@@ -28,22 +28,15 @@
 	"buffers":
 	[
 		{
-			"contents": "require(dplyr)\nrequire(ggplot2)\n\n\nif( ! file.exists( \"./data\" ) ) { dir.create(\"./data\") }\n\nsourceFile <- \"activity.zip\"\nif( file.exists( sourceFile ) ) { unzip(sourceFile, exdir=\"./data\") }\n\noutFile  <- \"./data/activity.csv\"\nif ( exists(\"DF\") == FALSE ) { DF <- read.csv(outFile) }\n\nnames(DF) <- c(\"steps\",\"date.measure\",\"interval\")\n\nok <- complete.cases(DF)\ndf1 <- DF[ok,]\n\nh <- ggplot(df1, aes(y=steps)) +\n    geom_histogram()\nprint (h)",
-			"file": "read_file.R",
-			"file_size": 458,
-			"file_write_time": 130782682486839648,
+			"contents": "REM PYTHON 3.4.1 32-Bit\n\npython -m ensurepip --upgrade  [goes into scripts]\n\ncd c:\\Python34\\scripts\n\npip install -U setuptools\npip install cython\npip install numpy\npip install bcolz\npip install beautifulsoup4\npip install binstar\npip install bitarray\npip install blaze  rem database handlers\npip install blz\npip install bokeh  rem database tools\npip install boto\npip install certifi\npip install cffi\npip install conda\npip install conda-env\npip install configobj\npip install cryptography\npip install cytoolz\npip install docutils\npip install fastcache\npip install ipython\npip install \"ipython[notebook]\"\npip install jdcal \npip install jedi\nrem problem > pip install llvmlite\nrem problem > pip install lxml\npip install matplotlib\npip install mock\npip install nltk\nrem problem > pip install node-webkit\npip install nose\nrem problem > pip install numba\npip install numexpr\npip install openpyxl\npip install pep8\npip install pillow\npip install ply\npip install pycrypto\npip install pyflakes\n\n\n\n\npip install xlrd\npip install xlsxwriter\npip install xlwings",
+			"file": "/C/Users/hlt/Desktop/python_packages.bat",
+			"file_size": 757,
+			"file_write_time": 130785158251449003,
 			"settings":
 			{
-				"buffer_size": 439,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/hlt/GitHub/ExData_Proj2/plot3.R",
-			"settings":
-			{
-				"buffer_size": 1967,
-				"line_ending": "Windows"
+				"buffer_size": 1045,
+				"line_ending": "Windows",
+				"name": "REM PYTHON 3.4.1 32-Bit"
 			}
 		}
 	],
@@ -83,6 +76,9 @@
 	],
 	"file_history":
 	[
+		"/C/Users/hlt/GitHub/RepData_PeerAssessment1/PA1_template.Rmd",
+		"/C/Users/hlt/GitHub/RepData_PeerAssessment1/read_file.R",
+		"/C/Users/hlt/GitHub/ExData_Proj2/plot3.R",
 		"/C/Users/hlt/GitHub/ExData_Proj2/plot2.R",
 		"/C/Users/hlt/GitHub/ExData_Proj2/Student 1.R",
 		"/C/Users/hlt/GitHub/ExData_Proj2/Student 2.R",
@@ -205,62 +201,33 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "read_file.R",
+					"file": "/C/Users/hlt/Desktop/python_packages.bat",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 439,
+						"buffer_size": 1045,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17,
-								17
+								983,
+								983
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/R/R.tmLanguage"
+							"auto_name": "REM PYTHON 3.4.1 32-Bit",
+							"syntax": "Packages/Batch File/Batch File.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/Users/hlt/GitHub/ExData_Proj2/plot3.R",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1967,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1493,
-								1493
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/R/R.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 342.0,
+						"translation.y": 510.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
