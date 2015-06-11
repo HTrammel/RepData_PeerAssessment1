@@ -1,25 +1,10 @@
 # Reproducible Research: Peer Assessment 1
 
-
-## Loading and preprocessing the data
-In keeping with the project instructions, the following code loads and provides the initial processing of the data.  
+The following libraries were used in this effort.
 
 
 ```r
-if(!file.exists("./data")) {dir.create("./data")}
-
-sourceFile <- "activity.zip"
-if(file.exists(sourceFile)) { unzip(sourceFile, exdir="./data") }
-
-outFile  <- "./data/activity.csv"
-if (exists("DF") == FALSE) { DF <- read.csv(outFile) }
-```
-
-## What is mean total number of steps taken per day?
-The distribution of the total number of steps per day is shown below.
-
-
-```r
+options(scipen=1, digits=2)
 require(dplyr)
 ```
 
@@ -54,39 +39,64 @@ require(lubridate)
 ```
 
 ```r
-ok <- complete.cases(DF)
-df <- DF[ok,]
-df$date <- ymd(df$date)
+require(reshape2)
+```
 
-cdf <- aggregate(df$steps, by=list(df$date), sum)
+```
+## Loading required package: reshape2
+```
+
+## Loading and preprocessing the data
+In keeping with the project instructions, the following code loads and provides the initial processing of the data.  No processing was required beyond loading the data into a data frame.  
+
+
+```r
+if(!file.exists("./data")) {dir.create("./data")}
+unzip("activity.zip", exdir="./data")
+df <- read.csv("./data/activity.csv") 
+```
+
+## What is mean total number of steps taken per day?
+The data were initially grouped by the *date* and the number of *steps* totalled for each day.  The resulting data were stored in a new data frame and the *date* column was changed from a factor to an date. The column names were changed for esthetic reasons.  
+
+The distribution of the total number of steps per day is shown in the histogram below.
+
+
+```r
+cdf <- df %>% group_by(date) %>% summarise(steps = sum(steps))
+cdf$date <- ymd(cdf$date)
 names(cdf) <- c("Date","Steps")
-
 g <- ggplot(cdf, aes(x = Date, y = Steps)) +
     geom_histogram(stat = "identity")
 print(g)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
-The **mean** and **median** of the total number of steps per day are given below.
-
+![](PA1_template_files/figure-html/daily_steps-1.png) 
 
 ```r
-summary(cdf)
+mn <- mean(cdf$Steps, na.rm = TRUE)
+md <- median(cdf$Steps, na.rm = TRUE)
 ```
 
-```
-##       Date                         Steps      
-##  Min.   :2012-10-02 00:00:00   Min.   :   41  
-##  1st Qu.:2012-10-16 00:00:00   1st Qu.: 8841  
-##  Median :2012-10-29 00:00:00   Median :10765  
-##  Mean   :2012-10-30 17:12:27   Mean   :10766  
-##  3rd Qu.:2012-11-16 00:00:00   3rd Qu.:13294  
-##  Max.   :2012-11-29 00:00:00   Max.   :21194
-```
+The analysis of the total number of steps per day showed the **mean** to be 10766.19 and the **median** to be 10765.
 
 ## What is the average daily activity pattern?
 
 
+```r
+cdf <- df %>% group_by(interval) %>% mutate(ic = ntile(interval, 288))
+sdf <- cdf %>% group_by(ic) %>% summarise(steps = mean(steps))
+names(sdf) <- c("Interval", "Steps")
+g <- ggplot(sdf, aes(x = Interval, y = Steps)) +
+    geom_line(stat = "identity")
+print(g)
+```
+
+```
+## Warning: Removed 2 rows containing missing values (geom_path).
+```
+
+![](PA1_template_files/figure-html/interval_steps-1.png) 
 
 ## Imputing missing values
 

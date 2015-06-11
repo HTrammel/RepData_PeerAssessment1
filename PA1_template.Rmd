@@ -5,48 +5,55 @@ output:
     keep_md: true
 ---
 
+The following libraries were used in this effort.
 
-## Loading and preprocessing the data
-In keeping with the project instructions, the following code loads and provides the initial processing of the data.  
-
-```{r}
-if(!file.exists("./data")) {dir.create("./data")}
-
-sourceFile <- "activity.zip"
-if(file.exists(sourceFile)) { unzip(sourceFile, exdir="./data") }
-
-outFile  <- "./data/activity.csv"
-if (exists("DF") == FALSE) { DF <- read.csv(outFile) }
-```
-
-## What is mean total number of steps taken per day?
-The distribution of the total number of steps per day is shown below.
-
-```{r}
+```{r load_libs}
+options(scipen=1, digits=2)
 require(dplyr)
 require(ggplot2)
 require(lubridate)
+require(reshape2)
+```
 
-ok <- complete.cases(DF)
-df <- DF[ok,]
-df$date <- ymd(df$date)
+## Loading and preprocessing the data
+In keeping with the project instructions, the following code loads and provides the initial processing of the data.  No processing was required beyond loading the data into a data frame.  
 
-cdf <- aggregate(df$steps, by=list(df$date), sum)
+```{r}
+if(!file.exists("./data")) {dir.create("./data")}
+unzip("activity.zip", exdir="./data")
+df <- read.csv("./data/activity.csv") 
+```
+
+## What is mean total number of steps taken per day?
+The data were initially grouped by the *date* and the number of *steps* totalled for each day.  The resulting data were stored in a new data frame and the *date* column was changed from a factor to an date. The column names were changed for esthetic reasons.  
+
+The distribution of the total number of steps per day is shown in the histogram below.
+
+```{r daily_steps, warning=FALSE}
+cdf <- df %>% group_by(date) %>% summarise(steps = sum(steps))
+cdf$date <- ymd(cdf$date)
 names(cdf) <- c("Date","Steps")
-
 g <- ggplot(cdf, aes(x = Date, y = Steps)) +
     geom_histogram(stat = "identity")
 print(g)
+mn <- mean(cdf$Steps, na.rm = TRUE)
+md <- median(cdf$Steps, na.rm = TRUE)
 ```
-The **mean** and **median** of the total number of steps per day are given below.
 
-```{r}
-summary(cdf)
-```
+The analysis of the total number of steps per day showed the **mean** to be `r mn` and the **median** to be `r md`.
 
 ## What is the average daily activity pattern?
 
-
+The following is a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+```{r interval_steps}
+cdf <- df %>% group_by(interval) %>% mutate(ic = ntile(interval, 288))
+sdf <- cdf %>% group_by(ic) %>% summarise(istp = mean(steps))
+names(sdf) <- c("Interval", "Steps")
+g <- ggplot(sdf, aes(x = Interval, y = Steps)) +
+    geom_line(stat = "identity")
+print(g)
+mx <- with(sdf, which(ic, max(istp)))
+```
 
 ## Imputing missing values
 
